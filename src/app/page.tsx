@@ -98,7 +98,7 @@ export default function Page() {
             {RESUME_DATA.summary}
           </p>
         </Section>
-        <Section>
+        <Section className="print-force-new-page">
           <h2 className="text-xl font-bold">Work Experience</h2>
           {RESUME_DATA.work.map((work) => {
             return (
@@ -158,6 +158,7 @@ export default function Page() {
             );
           })}
         </Section>
+
         <Section>
           <h2 className="text-xl font-bold">Skills</h2>
           <div className="flex flex-wrap gap-1">
@@ -167,9 +168,30 @@ export default function Page() {
           </div>
         </Section>
 
+        <Section>
+          <h2 className="text-xl font-bold">Volunteering</h2>
+          {RESUME_DATA.volunteering.map((volunteering) => {
+            return (
+              <Card key={volunteering.where}>
+                <CardHeader>
+                  <div className="flex items-center justify-between gap-x-2 text-base">
+                    <h3 className="font-semibold leading-none">
+                      {volunteering.where}
+                    </h3>
+                    <div className="text-sm tabular-nums text-gray-500">
+                      {volunteering.start} - {volunteering.end}
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="mt-2">{volunteering.text}</CardContent>
+              </Card>
+            );
+          })}
+        </Section>
+
         <Section className="print-force-new-page scroll-mb-16">
           <h2 className="text-xl font-bold">Projects</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-1 print:gap-2 md:grid-cols-2 lg:grid-cols-2">
             {RESUME_DATA.projects.map((project) => {
               return (
                 <ProjectCard
@@ -184,6 +206,7 @@ export default function Page() {
           </div>
         </Section>
       </section>
+      
 
       <CommandMenu
         links={[
