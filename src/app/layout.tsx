@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
+import Script from 'next/script';
 
 import "./globals.css";
 import React from "react";
@@ -23,8 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
+      <head>
+        <Script async defer
+          src={`${process.env.NEXT_PUBLIC_UMAMI_HOST}/script.js`}
+          data-website-id={`${process.env.NEXT_PUBLIC_UMAMI_ID}`}
+        />
+      </head>
       <body>{children}</body>
-      <Analytics />
     </html>
   );
 }
